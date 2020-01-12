@@ -1,6 +1,10 @@
+@import "../constants.scss";
+
 .app-container {
   width: 100vw;
   height: 100vh;
+
+  font-size: 2rem;
 
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -20,6 +24,10 @@
 
   .main-view {
     grid-area: main-view;
+
+    padding: 1rem;
+
+    background: $gray-transparent;
   }
 
   .footer {
