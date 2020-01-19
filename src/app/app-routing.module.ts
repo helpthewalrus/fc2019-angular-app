@@ -13,6 +13,18 @@ const routes: Routes = [
       import("./contact/contact.module").then(m => m.ContactModule)
   },
   {
+    path: "news-page",
+    loadChildren: () =>
+      import("./news-page/news-page.module").then(m => m.NewsPageModule)
+  },
+  {
+    path: "edit",
+    loadChildren: () =>
+      import("./create-edit-page/create-edit-page.module").then(
+        m => m.CreateEditPageModule
+      )
+  },
+  {
     path: "",
     loadChildren: () =>
       import("./main-page/main-page.module").then(m => m.MainPageModule),
