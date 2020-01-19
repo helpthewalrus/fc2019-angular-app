@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: () =>
-      import("./main-view/main-view.module").then(m => m.MainViewModule),
+      import("./main-page/main-page.module").then(m => m.MainPageModule),
     pathMatch: "full"
   },
   {
