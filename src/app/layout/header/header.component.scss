@@ -1,0 +1,25 @@
+@import "../../../constants.scss";
+
+:host {
+  height: 8rem;
+  padding: 2rem;
+
+  background: $background-gray;
+
+  .nav-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+
+    .nav-bar__link {
+      margin-right: 3rem;
+
+      color: $red;
+    }
+
+    .nav-bar__link:hover {
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import "../../../constants.scss";
+
+:host {
+  height: 5rem;
+  padding: 1rem;
+
+  color: $red;
+  background: $background-gray;
+}
