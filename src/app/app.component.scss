@@ -8,18 +8,14 @@
 
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(15rem, 20rem) 1fr;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "header header"
-    "sidebar main-view"
-    "footer footer";
+    "header"
+    "main-view"
+    "footer";
 
   .header {
     grid-area: header;
-  }
-
-  .sidebar {
-    grid-area: sidebar;
   }
 
   .main-view {
@@ -32,19 +28,5 @@
 
   .footer {
     grid-area: footer;
-  }
-}
-
-@media (max-width: 768px) {
-  .app-container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "main-view"
-      "footer";
-
-    .sidebar {
-      display: none;
-    }
   }
 }
