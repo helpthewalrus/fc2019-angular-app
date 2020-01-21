@@ -1,0 +1,96 @@
+@import "../../../constants";
+
+.news-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 6rem;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
+
+  background-color: $whiter;
+  font-size: 1.6rem;
+
+  .sources-filter {
+    position: relative;
+    display: inline-block;
+
+    &__current {
+      display: block;
+      width: 16rem;
+      padding: 0.7rem 0.5rem;
+      border-radius: 0.5rem;
+
+      background-color: $white;
+      text-align: center;
+    }
+
+    &__options {
+      display: none;
+      position: absolute;
+      background-color: $background-gray;
+      min-width: 16rem;
+      box-shadow: 0 0.8rem 1.6rem 0 $black;
+      padding: 1.2rem 1.6rem;
+      z-index: 1;
+    }
+
+    &__option {
+      display: block;
+      margin-bottom: 1rem;
+      color: $white;
+
+      &:hover {
+        cursor: pointer;
+        color: $red;
+      }
+    }
+  }
+
+  .sources-filter:hover {
+    .sources-filter__options {
+      display: block;
+
+      border-radius: 0.5rem;
+    }
+  }
+
+  .sources-filter-disabled {
+    .sources-filter__current {
+      background-color: $whiter;
+    }
+  }
+
+  .sources-filter-disabled:hover {
+    .sources-filter__options {
+      display: none;
+    }
+  }
+
+  .news-list-filter {
+    display: block;
+    width: 26rem;
+    padding: 0.7rem 0.5rem;
+
+    border-radius: 0.5rem;
+    background-color: $white;
+  }
+
+  .checkbox-container {
+    &__input {
+      margin-right: 0.6rem;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  .news-create-button {
+    display: block;
+    width: 16rem;
+    padding: 0.7rem 0.5rem;
+    border-radius: 0.5rem;
+
+    background-color: $white;
+    text-align: center;
+  }
+}

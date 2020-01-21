@@ -1,1 +1,46 @@
-<p>news-filter works!</p>
+<div class="news-filter">
+  <div
+    class="sources-filter"
+    [ngClass]="{
+      'sources-filter-disabled': checkboxState
+    }"
+  >
+    <a class="sources-filter__current">
+      {{ currentSource.length ? currentSource : "Choose news source" }}
+    </a>
+    <div class="sources-filter__options">
+      <a
+        *ngFor="let source of sources"
+        class="sources-filter__option"
+        (click)="onSourceChange($event)"
+        [attr.data-srcid]="source.id"
+      >
+        {{ source.name }}
+      </a>
+    </div>
+  </div>
+
+  <input
+    class="news-list-filter"
+    #newListFilter
+    type="text"
+    placeholder="Type your text to filter news..."
+    (keyup.enter)="onEnterNewsFilter(newListFilter.value)"
+  />
+
+  <div class="checkbox-container">
+    <input
+      class="checkbox-container__input"
+      type="checkbox"
+      id="createdByMe"
+      name="createdByMe"
+      [checked]="checkboxState"
+      (click)="onCheckboxClicked($event)"
+    />
+    <label class="checkbox-container__label" for="createdByMe"
+      >Only created by me</label
+    >
+  </div>
+
+  <a class="news-create-button" href="#">Add Article</a>
+</div>

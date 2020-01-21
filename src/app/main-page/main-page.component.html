@@ -1,2 +1,9 @@
-<app-news-filter></app-news-filter>
-<app-news-list></app-news-list>
+<app-news-filter
+  [sources]="sources"
+  [currentSource]="currentSource"
+  [checkboxState]="checkboxState"
+  (currentSourceChange)="onChangeCurrentSource($event)"
+  (currentNewsFilterChange)="onCurrentNewsFilterChange($event)"
+  (currentCheckboxState)="onChangeCurrentCheckboxState($event)"
+></app-news-filter>
+<app-news-list [articles]="articles"></app-news-list>
