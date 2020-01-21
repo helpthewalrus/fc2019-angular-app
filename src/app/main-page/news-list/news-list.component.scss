@@ -1,0 +1,21 @@
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem 4rem;
+  grid-auto-rows: 1fr;
+  justify-content: space-evenly;
+  margin: 0 auto 5rem;
+  max-width: 96rem;
+}
+
+@media (max-width: 1024px) {
+  .news-list {
+    grid-template-columns: repeat(2, 30rem);
+  }
+}
+
+@media (max-width: 650px) {
+  .news-list {
+    grid-template-columns: repeat(1, 30rem);
+  }
+}

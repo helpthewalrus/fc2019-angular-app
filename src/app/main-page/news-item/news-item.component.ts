@@ -12,7 +12,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsItemComponent implements OnInit {
-  @Input() newsItem: string;
+  @Input() article: string;
 
   constructor() {}
 

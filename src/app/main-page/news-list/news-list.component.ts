@@ -1,4 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from "@angular/core";
 
 @Component({
   selector: "app-news-list",
@@ -6,10 +13,14 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
   styleUrls: ["./news-list.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewsListComponent implements OnInit {
-  public newsList: string[] = ["winter", "spring", "summer", "autumn"];
+export class NewsListComponent implements OnInit, OnChanges {
+  @Input() articles: any[];
 
   constructor() {}
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 }

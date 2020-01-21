@@ -1,1 +1,27 @@
-<p>{{ newsItem }}</p>
+<div class="news-item">
+  <div class="news-item__info-container">
+    <img
+      data-src="{{ article.urlToImage }}"
+      alt="news item image"
+      class="news-item__info-container image"
+    />
+
+    <div class="news-item__info-container info">
+      <h3 class="news-item__info-container info__title">{{ article.title }}</h3>
+      <p class="news-item__info-container info__date">
+        Date: {{ article.publishedAt | date: "short" }}
+      </p>
+      <p class="news-item__info-container info__description">
+        {{ article.description }}
+      </p>
+      <a href="{{ article.url }}" class="news-item__info-container info__link">
+        Read more...
+      </a>
+    </div>
+  </div>
+
+  <div class="news-item__buttons">
+    <a class="news-item__buttons button">Edit</a>
+    <a class="news-item__buttons button">Delete</a>
+  </div>
+</div>
