@@ -17,6 +17,7 @@ export class NewsFilterComponent implements OnInit {
   @Input() sources: any[];
   @Input() currentSource: { name: string; id: string };
   @Input() checkboxState: boolean;
+  @Input() currentNewsFilter: string;
 
   @Output() currentSourceChange: EventEmitter<any> = new EventEmitter();
   @Output() currentNewsFilterChange: EventEmitter<string> = new EventEmitter();

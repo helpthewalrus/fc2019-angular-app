@@ -25,6 +25,7 @@
     #newListFilter
     type="text"
     placeholder="Type your text to filter news..."
+    [value]="currentNewsFilter"
     (keyup.enter)="onEnterNewsFilter(newListFilter.value)"
   />
 
@@ -42,5 +43,5 @@
     >
   </div>
 
-  <a class="news-create-button" href="#">Add Article</a>
+  <a routerLink="/edit" class="news-create-button">Add Article</a>
 </div>
