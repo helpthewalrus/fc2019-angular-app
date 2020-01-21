@@ -2,8 +2,12 @@
   [sources]="sources"
   [currentSource]="currentSource"
   [checkboxState]="checkboxState"
+  [currentNewsFilter]="currentNewsFilter"
   (currentSourceChange)="onChangeCurrentSource($event)"
   (currentNewsFilterChange)="onCurrentNewsFilterChange($event)"
   (currentCheckboxState)="onChangeCurrentCheckboxState($event)"
 ></app-news-filter>
-<app-news-list [articles]="articles"></app-news-list>
+<app-news-list
+  [articles]="articles"
+  (loadMoreClicked)="onLoadMoreButtonClicked()"
+></app-news-list>
