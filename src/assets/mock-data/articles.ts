@@ -677,7 +677,8 @@ export const ARTICLES = [
           "http://www.abc.net.au/news/2020-01-20/small-businesses-hit-by-bushfires-to-receive-grants-and-loans/11881082",
         urlToImage:
           "https://www.abc.net.au/news/image/11501824-16x9-700x394.jpg",
-        publishedAt: "2020-01-19T13:20:18Z"
+        publishedAt: "2020-01-19T13:20:18Z",
+        myNews: true
       },
       {
         author:
@@ -690,7 +691,8 @@ export const ARTICLES = [
           "http://www.abc.net.au/news/2020-01-19/australia-bushfire-carnage-from-above/11879534",
         urlToImage:
           "https://www.abc.net.au/news/image/11879902-16x9-700x394.jpg",
-        publishedAt: "2020-01-18T18:46:20Z"
+        publishedAt: "2020-01-18T18:46:20Z",
+        myNews: true
       },
       {
         author:
@@ -703,7 +705,8 @@ export const ARTICLES = [
           "http://www.abc.net.au/news/2020-01-19/melbourne-weather-hail-hits-outer-suburbs-fire-at-french-island/11880412",
         urlToImage:
           "https://www.abc.net.au/news/image/11880932-16x9-700x394.jpg",
-        publishedAt: "2020-01-19T06:55:53Z"
+        publishedAt: "2020-01-19T06:55:53Z",
+        myNews: true
       }
     ]
   }

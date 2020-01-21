@@ -94,5 +94,9 @@ export const SOURCES = [
       large: ""
     },
     sortBysAvailable: ["top"]
+  },
+  {
+    id: "all-sources",
+    name: "All sources"
   }
 ];
