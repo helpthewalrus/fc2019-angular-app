@@ -20,7 +20,10 @@
     </div>
   </div>
 
-  <div class="news-item__buttons">
+  <div
+    class="news-item__buttons"
+    *ngIf="article.myNews && article.myNews === true"
+  >
     <a class="news-item__buttons button">Edit</a>
     <a class="news-item__buttons button">Delete</a>
   </div>
