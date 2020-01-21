@@ -4,3 +4,10 @@
     [article]="article"
   ></app-news-item>
 </div>
+<button
+  class="load-news"
+  *ngIf="articles && articles.length"
+  (click)="onLoadMoreClicked()"
+>
+  Load more
+</button>

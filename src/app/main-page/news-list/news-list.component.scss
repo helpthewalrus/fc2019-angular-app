@@ -1,3 +1,5 @@
+@import "../../../constants";
+
 .news-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -6,6 +8,17 @@
   justify-content: space-evenly;
   margin: 0 auto 5rem;
   max-width: 96rem;
+}
+
+.load-news {
+  display: block;
+  margin: 0 auto 3rem;
+  width: 40rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.5rem;
+
+  background-color: $white;
+  text-align: center;
 }
 
 @media (max-width: 1024px) {

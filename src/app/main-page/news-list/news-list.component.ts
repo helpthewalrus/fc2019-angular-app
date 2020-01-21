@@ -4,7 +4,9 @@ import {
   ChangeDetectionStrategy,
   Input,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  Output,
+  EventEmitter
 } from "@angular/core";
 
 @Component({
@@ -16,11 +18,17 @@ import {
 export class NewsListComponent implements OnInit, OnChanges {
   @Input() articles: any[];
 
+  @Output() loadMoreClicked: EventEmitter<{}> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
+  }
+
+  public onLoadMoreClicked(): void {
+    this.loadMoreClicked.emit({});
   }
 }
