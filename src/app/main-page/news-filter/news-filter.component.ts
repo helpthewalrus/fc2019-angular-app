@@ -7,6 +7,8 @@ import {
   EventEmitter
 } from "@angular/core";
 
+import { DataService } from "src/app/shared/services/data.service";
+
 @Component({
   selector: "app-news-filter",
   templateUrl: "./news-filter.component.html",
@@ -23,27 +25,30 @@ export class NewsFilterComponent implements OnInit {
   @Output() currentNewsFilterChange: EventEmitter<string> = new EventEmitter();
   @Output() currentCheckboxState: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
-  ngOnInit() {
-    console.log(this.sources);
-  }
+  ngOnInit() {}
 
   public onSourceChange({ target }) {
-    console.log("===============onSourceChange");
     this.currentSourceChange.emit({
       name: target.innerText,
       id: target.dataset.srcid
     });
+
+    this.dataService.changeTitle(target.innerText);
   }
 
   public onEnterNewsFilter(currentNewsFilter: string): void {
-    console.log("===============onEnterNewsFilter");
     this.currentNewsFilterChange.emit(currentNewsFilter);
   }
 
   public onCheckboxClicked({ target: { checked } }): void {
-    console.log("===============onCheckboxClicked");
     this.currentCheckboxState.emit(checked);
+    this.dataService.changeTitle("My News");
+  }
+
+  public onAddArticle(): void {
+    this.dataService.changeTitle("Create");
+    this.dataService.setCurrentArticle({});
   }
 }

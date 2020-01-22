@@ -38,10 +38,12 @@
       [checked]="checkboxState"
       (click)="onCheckboxClicked($event)"
     />
-    <label class="checkbox-container__label" for="createdByMe"
-      >Only created by me</label
-    >
+    <label class="checkbox-container__label" for="createdByMe">
+      Only created by me
+    </label>
   </div>
 
-  <a routerLink="/edit" class="news-create-button">Add Article</a>
+  <a routerLink="/edit" class="news-create-button" (click)="onAddArticle()">
+    Add Article
+  </a>
 </div>
