@@ -68,5 +68,7 @@ export class MainPageComponent {
       )
     ];
     this.counter += 5;
+
+    this.currentNewsFilter = "";
   }
 }

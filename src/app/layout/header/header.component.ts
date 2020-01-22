@@ -17,4 +17,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.title = this.dataService.currentTitle;
   }
+
+  public onChangeTitle(title: string) {
+    this.dataService.changeTitle(title);
+  }
 }

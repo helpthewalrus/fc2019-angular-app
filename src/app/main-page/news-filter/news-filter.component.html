@@ -6,7 +6,11 @@
     }"
   >
     <a class="sources-filter__current">
-      {{ currentSource.length ? currentSource : "Choose news source" }}
+      {{
+        currentSource && currentSource.name
+          ? currentSource.name
+          : "Choose news source"
+      }}
     </a>
     <div class="sources-filter__options">
       <a
