@@ -1,10 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
-} from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+
+import { DataService } from "src/app/shared/services/data.service";
 
 @Component({
   selector: "app-create-edit-form",
@@ -13,6 +10,8 @@ import { FormBuilder, Validators } from "@angular/forms";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateEditFormComponent implements OnInit {
+  public article: any;
+
   public articleForm = this.fb.group({
     heading: ["", Validators.required],
     shortDescription: [""],
@@ -27,23 +26,22 @@ export class CreateEditFormComponent implements OnInit {
     sourceUrl: [""]
   });
 
-  public hoho: boolean = false;
+  public radioButtonValue: boolean = false;
   public image: string;
 
-  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+  constructor(private fb: FormBuilder, private dataService: DataService) {}
 
-  ngOnInit() {}
-
-  public onSubmit(): void {
-    console.log(this.articleForm.value);
+  ngOnInit() {
+    this.article = this.dataService.currentArticle;
   }
 
   public onRadioClicked({ target: { value } }): void {
-    console.log(value);
-    this.hoho = value === "image" ? true : false;
+    this.radioButtonValue = value === "image" ? true : false;
   }
 
   public onFileSelect(event: any) {
+    this.articleForm.patchValue({ photo: { inputUrl: "" } });
+
     const file = (event.target as HTMLInputElement).files[0];
     this.articleForm.patchValue({ photo: { inputImg: file } });
     this.photo.updateValueAndValidity();
@@ -57,11 +55,21 @@ export class CreateEditFormComponent implements OnInit {
     }
   }
 
-  public get photo(): any {
-    return this.articleForm.get("photo").get("inputImg");
+  public onUrlSelect() {
+    this.articleForm.patchValue({ photo: { inputImg: "" } });
+  }
+
+  public onSubmit(): void {
+    console.log("SAVE FORM", this.articleForm.value);
+    alert("SAVE FORM");
   }
 
   public onCancel(): void {
-    console.log("=======onCancel=====");
+    console.log("ON CANCEL FORM");
+    alert("ON CANCEL FORM");
+  }
+
+  private get photo(): any {
+    return this.articleForm.get("photo").get("inputImg");
   }
 }

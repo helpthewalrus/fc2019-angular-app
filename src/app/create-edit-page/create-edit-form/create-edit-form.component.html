@@ -1,13 +1,20 @@
-<form class="article-form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+<form
+  novalidate
+  class="article-form"
+  [formGroup]="articleForm"
+  (ngSubmit)="onSubmit()"
+  *ngIf="article | async as article"
+>
   <label class="article-form__label heading">
     <span class="article-form__span heading">
-      Heading:
+      Heading*:
     </span>
     <input
       class="article-form__input heading"
       type="text"
       formControlName="heading"
       required
+      value="{{ article.title ? article.title : '' }}"
     />
   </label>
 
@@ -19,18 +26,20 @@
       class="article-form__input shortDescription"
       type="text"
       formControlName="shortDescription"
+      value="{{ article.description ? article.description : '' }}"
     />
   </label>
 
   <label class="article-form__label content">
     <span class="article-form__span content">
-      Content:
+      Content*:
     </span>
     <input
       class="article-form__input content"
-      type="text"
+      type="textarea"
       formControlName="content"
       required
+      value="{{ article.description ? article.description : '' }}"
     />
   </label>
 
@@ -65,19 +74,21 @@
 
       <input
         id="inputImg"
-        *ngIf="hoho"
+        *ngIf="radioButtonValue"
         class="article-form__input image"
         type="file"
         (change)="onFileSelect($event)"
       />
       <input
         id="inputImg"
-        *ngIf="!hoho"
+        *ngIf="!radioButtonValue"
         class="article-form__input image"
         type="text"
         formControlName="inputUrl"
+        (change)="onUrlSelect()"
+        value="{{ article.urlToImage ? article.urlToImage : '' }}"
       />
-      <img [src]="image" *ngIf="image" class="preview" />
+      <img [src]="image" *ngIf="image && radioButtonValue" class="preview" />
     </div>
   </div>
 
@@ -89,6 +100,7 @@
       class="article-form__input date"
       type="text"
       formControlName="date"
+      value="{{ article.publishedAt ? article.publishedAt : '' }}"
     />
   </label>
 
@@ -100,6 +112,7 @@
       class="article-form__input author"
       type="text"
       formControlName="author"
+      value="{{ article.author ? article.author : '' }}"
     />
   </label>
 
@@ -111,6 +124,7 @@
       class="article-form__input sourceUrl"
       type="text"
       formControlName="sourceUrl"
+      value="{{ article.url ? article.url : '' }}"
     />
   </label>
 
