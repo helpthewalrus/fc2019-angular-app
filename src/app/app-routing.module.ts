@@ -8,12 +8,7 @@ const routes: Routes = [
       import("./not-found/not-found.module").then(m => m.NotFoundModule)
   },
   {
-    path: "contact",
-    loadChildren: () =>
-      import("./contact/contact.module").then(m => m.ContactModule)
-  },
-  {
-    path: "news-page",
+    path: "news-page/:id",
     loadChildren: () =>
       import("./news-page/news-page.module").then(m => m.NewsPageModule)
   },
