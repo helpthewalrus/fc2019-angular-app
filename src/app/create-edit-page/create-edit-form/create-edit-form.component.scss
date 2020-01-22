@@ -1,0 +1,64 @@
+@import "../../../constants";
+
+.article-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 65rem;
+  margin: 3rem auto;
+
+  font-size: 1.6rem;
+
+  &__label {
+    margin-bottom: 1rem;
+
+    &.image {
+      display: flex;
+      align-items: center;
+
+      .radio-label {
+        margin-right: 1rem;
+      }
+    }
+
+    &.sourceUrl {
+      margin-bottom: 5rem;
+    }
+  }
+
+  &__span {
+    display: inline-block;
+    min-width: 20rem;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 40rem;
+    padding: 0.7rem 0.5rem;
+
+    border-radius: 0.5rem;
+    background-color: $white;
+  }
+
+  &__submit {
+    display: block;
+    width: 16rem;
+    margin-bottom: 2rem;
+    padding: 0.7rem 0.5rem;
+    border-radius: 0.5rem;
+
+    background-color: $white;
+    text-align: center;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+      background-color: $whiter;
+    }
+  }
+
+  .preview {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+  }
+}
