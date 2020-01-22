@@ -16,22 +16,6 @@ export const SOURCES = [
     sortBysAvailable: ["top"]
   },
   {
-    id: "associated-press",
-    name: "Associated Press",
-    description:
-      "The AP delivers in-depth coverage on the international, politics, lifestyle, business, and entertainment news.",
-    url: "https://apnews.com/",
-    category: "general",
-    language: "en",
-    country: "us",
-    urlsToLogos: {
-      small: "",
-      medium: "",
-      large: ""
-    },
-    sortBysAvailable: ["top"]
-  },
-  {
     id: "bbc-news",
     name: "BBC News",
     description:
@@ -56,22 +40,6 @@ export const SOURCES = [
     category: "sports",
     language: "en",
     country: "gb",
-    urlsToLogos: {
-      small: "",
-      medium: "",
-      large: ""
-    },
-    sortBysAvailable: ["top"]
-  },
-  {
-    id: "bloomberg",
-    name: "Bloomberg",
-    description:
-      "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stories from Businessweek and Bloomberg News.",
-    url: "http://www.bloomberg.com",
-    category: "business",
-    language: "en",
-    country: "us",
     urlsToLogos: {
       small: "",
       medium: "",
