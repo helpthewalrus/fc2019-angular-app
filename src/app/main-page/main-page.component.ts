@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
 
 import { ARTICLES } from "../../assets/mock-data/articles";
 import { SOURCES } from "../../assets/mock-data/sources";
@@ -8,7 +8,7 @@ import { SOURCES } from "../../assets/mock-data/sources";
   templateUrl: "./main-page.component.html",
   styleUrls: ["./main-page.component.scss"]
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
   public currentSource: string = "";
   public currentSourceId: string = "";
   public checkboxState: boolean = false;
@@ -17,10 +17,6 @@ export class MainPageComponent implements OnInit {
   public allFoundArticles: any[];
   public counter: number = 0;
   public currentNewsFilter: string = "";
-
-  constructor() {}
-
-  ngOnInit() {}
 
   public onChangeCurrentSource({ name, id }) {
     this.currentSource = name;
