@@ -14,7 +14,12 @@
       <p class="news-item__info-container info__description">
         {{ article.description }}
       </p>
-      <a href="{{ article.url }}" class="news-item__info-container info__link">
+      <a
+        routerLink="news-page/{{ article.publishedAt }}"
+        href="{{ article.url }}"
+        class="news-item__info-container info__link"
+        (click)="onWatchArticle()"
+      >
         Read more...
       </a>
     </div>
@@ -24,7 +29,12 @@
     class="news-item__buttons"
     *ngIf="article.myNews && article.myNews === true"
   >
-    <a class="news-item__buttons button">Edit</a>
+    <a
+      routerLink="/edit"
+      class="news-item__buttons button"
+      (click)="onEditArticle()"
+      >Edit
+    </a>
     <a class="news-item__buttons button">Delete</a>
   </div>
 </div>
