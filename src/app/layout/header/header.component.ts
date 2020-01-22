@@ -1,9 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  Input
-} from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+
+import { DataService } from "src/app/shared/services/data.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-header",
@@ -12,9 +10,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  @Input() title: string = "News App";
+  public title: Observable<string>;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.title = this.dataService.currentTitle;
+  }
 }
