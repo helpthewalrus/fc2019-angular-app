@@ -1,4 +1,4 @@
-<div *ngIf="article | async as article">
+<div *ngIf="currentArticle$ | async as article">
   <div class="news-item" *ngIf="article.title; else noArticle">
     <div class="news-item__info-container">
       <img

@@ -2,10 +2,11 @@ import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
-  Input,
   Output,
   EventEmitter
 } from "@angular/core";
+
+import { Observable } from "rxjs";
 
 import { DataService } from "src/app/shared/services/data.service";
 
@@ -16,39 +17,54 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsFilterComponent implements OnInit {
-  @Input() sources: any[];
-  @Input() currentSource: { name: string; id: string };
-  @Input() checkboxState: boolean;
-  @Input() currentNewsFilter: string;
-
   @Output() currentSourceChange: EventEmitter<any> = new EventEmitter();
   @Output() currentNewsFilterChange: EventEmitter<string> = new EventEmitter();
   @Output() currentCheckboxState: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private dataService: DataService) {}
+  public currentSource$: Observable<string>;
+  public sources$: Observable<any>;
+  public currentNewsFilter$: Observable<string>;
+  public isOnlyMyArticles$: Observable<boolean>;
+
+  constructor(private dataService: DataService) {
+    this.currentSource$ = this.dataService.currentSource$;
+    this.sources$ = this.dataService.sources$;
+    this.currentNewsFilter$ = this.dataService.currentArticlesFilter$;
+    this.isOnlyMyArticles$ = this.dataService.isOnlyMyArticles$;
+  }
 
   ngOnInit() {}
 
   public onSourceChange({ target }) {
+    const {
+      innerText,
+      dataset: { srcid }
+    } = target;
     this.currentSourceChange.emit({
-      name: target.innerText,
-      id: target.dataset.srcid
+      name: innerText,
+      id: srcid
     });
 
-    this.dataService.changeTitle(target.innerText);
+    this.dataService.changeCurrentSource(innerText);
+    this.dataService.changeCurrentArticlesFilter("");
+    this.dataService.changeAppTitle(innerText);
   }
 
-  public onEnterNewsFilter(currentNewsFilter: string): void {
-    this.currentNewsFilterChange.emit(currentNewsFilter);
+  public onEnterNewsFilter({ target: { value } }): void {
+    this.dataService.changeCurrentArticlesFilter(value);
   }
 
   public onCheckboxClicked({ target: { checked } }): void {
     this.currentCheckboxState.emit(checked);
-    this.dataService.changeTitle("My News");
+
+    this.dataService.changeCurrentSource("");
+    this.dataService.changeCurrentArticlesFilter("");
+    this.dataService.changeIsOnlyMyArticles(checked);
+    this.dataService.changeAppTitle("My News");
   }
 
   public onAddArticle(): void {
-    this.dataService.changeTitle("Create");
     this.dataService.setCurrentArticle({});
+    this.dataService.changeAppTitle("Create");
   }
 }

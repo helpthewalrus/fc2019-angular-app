@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 
-import { DataService } from "src/app/shared/services/data.service";
 import { Observable } from "rxjs";
+
+import { DataService } from "src/app/shared/services/data.service";
 
 @Component({
   selector: "app-header",
@@ -10,15 +11,15 @@ import { Observable } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  public title: Observable<string>;
+  public currentAppTitle$: Observable<string>;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.title = this.dataService.currentTitle;
+    this.currentAppTitle$ = this.dataService.currentAppTitle$;
   }
 
-  public onChangeTitle(title: string) {
-    this.dataService.changeTitle(title);
+  public onChangeTitle(newValue: string) {
+    this.dataService.changeAppTitle(newValue);
   }
 }

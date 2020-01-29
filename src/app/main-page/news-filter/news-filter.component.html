@@ -2,19 +2,19 @@
   <div
     class="sources-filter"
     [ngClass]="{
-      'sources-filter-disabled': checkboxState
+      'sources-filter-disabled': isOnlyMyArticles.checked
     }"
   >
     <a class="sources-filter__current">
       {{
-        currentSource && currentSource.name
-          ? currentSource.name
+        (currentSource$ | async)?.length
+          ? (currentSource$ | async)
           : "Choose news source"
       }}
     </a>
     <div class="sources-filter__options">
       <a
-        *ngFor="let source of sources"
+        *ngFor="let source of sources$ | async"
         class="sources-filter__option"
         (click)="onSourceChange($event)"
         [attr.data-srcid]="source.id"
@@ -26,20 +26,20 @@
 
   <input
     class="news-list-filter"
-    #newListFilter
     type="text"
     placeholder="Type your text to filter news..."
-    [value]="currentNewsFilter"
-    (keyup.enter)="onEnterNewsFilter(newListFilter.value)"
+    [value]="currentNewsFilter$ | async"
+    (keyup.enter)="onEnterNewsFilter($event)"
   />
 
   <div class="checkbox-container">
     <input
+      #isOnlyMyArticles
       class="checkbox-container__input"
       type="checkbox"
       id="createdByMe"
       name="createdByMe"
-      [checked]="checkboxState"
+      [checked]="isOnlyMyArticles$ | async"
       (click)="onCheckboxClicked($event)"
     />
     <label class="checkbox-container__label" for="createdByMe">

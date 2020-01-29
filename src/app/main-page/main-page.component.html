@@ -1,13 +1,8 @@
 <app-news-filter
-  [sources]="sources"
-  [currentSource]="currentSource"
-  [checkboxState]="checkboxState"
-  [currentNewsFilter]="currentNewsFilter"
   (currentSourceChange)="onChangeCurrentSource($event)"
-  (currentNewsFilterChange)="onCurrentNewsFilterChange($event)"
-  (currentCheckboxState)="onChangeCurrentCheckboxState($event)"
+  (currentCheckboxState)="onChangeIsOnlyMyArticles($event)"
 ></app-news-filter>
 <app-news-list
-  [articles]="articles"
+  [articles]="articles | filter: (currentNewsFilter$ | async)"
   (loadMoreClicked)="onLoadMoreButtonClicked()"
 ></app-news-list>

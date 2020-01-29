@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 
+import { Observable } from "rxjs";
+
 import { ARTICLES } from "../../assets/mock-data/articles";
-import { SOURCES } from "../../assets/mock-data/sources";
+import { DataService } from "../shared/services/data.service";
 
 @Component({
   selector: "app-main-page",
@@ -9,18 +11,18 @@ import { SOURCES } from "../../assets/mock-data/sources";
   styleUrls: ["./main-page.component.scss"]
 })
 export class MainPageComponent {
-  public currentSource: string = "";
   public currentSourceId: string = "";
   public checkboxState: boolean = false;
-  public sources = SOURCES;
-  public articles: any[];
+  public articles: any[] = [];
   public allFoundArticles: any[];
   public counter: number = 0;
-  public currentNewsFilter: string = "";
+  public currentNewsFilter$: Observable<string>;
+
+  constructor(private dataService: DataService) {
+    this.currentNewsFilter$ = this.dataService.currentArticlesFilter$;
+  }
 
   public onChangeCurrentSource({ name, id }) {
-    this.currentSource = name;
-
     this.allFoundArticles = ARTICLES.reduce((acc, sourceArticles: any) => {
       if (sourceArticles.source === id || id === "all-sources") {
         return [...acc, ...sourceArticles.articles];
@@ -29,14 +31,10 @@ export class MainPageComponent {
     }, []);
     this.articles = this.allFoundArticles.slice(0, 5);
     this.counter = 5;
-
-    this.currentNewsFilter = "";
   }
 
-  public onChangeCurrentCheckboxState(currentCheckboxState: boolean): void {
-    this.checkboxState = currentCheckboxState;
-
-    if (currentCheckboxState === true) {
+  public onChangeIsOnlyMyArticles(newValue: boolean): void {
+    if (newValue === true) {
       this.allFoundArticles = ARTICLES.reduce((acc, sourceArticles: any) => {
         if (sourceArticles.source === "my-news") {
           return [...acc, ...sourceArticles.articles];
@@ -48,17 +46,7 @@ export class MainPageComponent {
       this.counter = 5;
     } else {
       this.articles = [];
-      this.currentSource = "";
     }
-
-    this.currentNewsFilter = "";
-  }
-
-  public onCurrentNewsFilterChange(currentNewsFilter: string): void {
-    this.articles = this.articles.filter((article: any) =>
-      article.title.toUpperCase().includes(currentNewsFilter.toUpperCase())
-    );
-    this.currentNewsFilter = currentNewsFilter;
   }
 
   public onLoadMoreButtonClicked(): void {
@@ -69,6 +57,6 @@ export class MainPageComponent {
     ];
     this.counter += 5;
 
-    this.currentNewsFilter = "";
+    this.dataService.changeCurrentArticlesFilter("");
   }
 }

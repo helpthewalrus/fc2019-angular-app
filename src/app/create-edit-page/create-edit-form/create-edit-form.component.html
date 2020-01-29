@@ -3,7 +3,7 @@
   class="article-form"
   [formGroup]="articleForm"
   (ngSubmit)="onSubmit()"
-  *ngIf="article | async as article"
+  *ngIf="currentArticle$ | async as article"
 >
   <label class="article-form__label heading">
     <span class="article-form__span heading">

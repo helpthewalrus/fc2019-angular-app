@@ -21,12 +21,12 @@ export class NewsItemComponent implements OnInit {
   ngOnInit() {}
 
   public onEditArticle() {
-    this.dataService.changeTitle("Edit");
     this.dataService.setCurrentArticle(this.article);
+    this.dataService.changeAppTitle("Edit");
   }
 
   public onWatchArticle() {
-    this.dataService.changeTitle("Read chosen article");
     this.dataService.setCurrentArticle(this.article);
+    this.dataService.changeAppTitle("Read chosen article");
   }
 }

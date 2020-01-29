@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
+import { Observable } from "rxjs";
+
 import { DataService } from "src/app/shared/services/data.service";
 
 @Component({
@@ -10,7 +12,7 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateEditFormComponent implements OnInit {
-  public article: any;
+  public currentArticle$: Observable<any>;
 
   public articleForm = this.fb.group({
     heading: ["", Validators.required],
@@ -32,7 +34,7 @@ export class CreateEditFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private dataService: DataService) {}
 
   ngOnInit() {
-    this.article = this.dataService.currentArticle;
+    this.currentArticle$ = this.dataService.currentArticle$;
   }
 
   public onRadioClicked({ target: { value } }): void {

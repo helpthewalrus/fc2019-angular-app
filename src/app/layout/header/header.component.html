@@ -4,8 +4,9 @@
       routerLink="/"
       class="header-container nav-bar__link"
       (click)="onChangeTitle('News App')"
-      >Main</a
     >
+      Main
+    </a>
   </nav>
-  <h1 class="header-container app-title">{{ title | async }}</h1>
+  <h1 class="header-container app-title">{{ currentAppTitle$ | async }}</h1>
 </div>

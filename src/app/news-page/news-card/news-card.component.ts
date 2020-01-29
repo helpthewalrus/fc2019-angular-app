@@ -11,16 +11,16 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsCardComponent implements OnInit {
-  public article: Observable<any>;
+  public currentArticle$: Observable<any>;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.article = this.dataService.currentArticle;
+    this.currentArticle$ = this.dataService.currentArticle$;
   }
 
   public onEditArticle(article: any) {
-    this.dataService.changeTitle("Edit");
+    this.dataService.changeAppTitle("Edit");
     this.dataService.setCurrentArticle(article);
   }
 }
