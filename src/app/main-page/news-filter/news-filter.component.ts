@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 
 import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 
 import { DataService } from "src/app/shared/services/data.service";
 
@@ -28,7 +29,7 @@ export class NewsFilterComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.currentSource$ = this.dataService.currentSource$;
-    this.sources$ = this.dataService.sources$;
+    this.sources$ = this.dataService.getSources();
     this.currentNewsFilter$ = this.dataService.currentArticlesFilter$;
     this.isOnlyMyArticles$ = this.dataService.isOnlyMyArticles$;
   }

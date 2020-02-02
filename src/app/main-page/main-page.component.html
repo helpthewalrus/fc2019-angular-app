@@ -3,6 +3,6 @@
   (currentCheckboxState)="onChangeIsOnlyMyArticles($event)"
 ></app-news-filter>
 <app-news-list
-  [articles]="articles | filter: (currentNewsFilter$ | async)"
+  [articles]="articles$ | async | filter: (currentNewsFilter$ | async)"
   (loadMoreClicked)="onLoadMoreButtonClicked()"
 ></app-news-list>

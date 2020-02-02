@@ -20,4 +20,8 @@ export class NewsListComponent {
   public onLoadMoreClicked(): void {
     this.loadMoreClicked.emit({});
   }
+
+  public trackByIndex(index: number): number {
+    return index;
+  }
 }

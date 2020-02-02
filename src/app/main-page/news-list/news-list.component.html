@@ -1,6 +1,6 @@
 <div class="news-list">
   <app-news-item
-    *ngFor="let article of articles"
+    *ngFor="let article of articles; trackBy: trackByIndex"
     [article]="article"
   ></app-news-item>
 </div>
