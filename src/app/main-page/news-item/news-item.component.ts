@@ -6,6 +6,7 @@ import {
 } from "@angular/core";
 
 import { DataService } from "src/app/shared/services/data.service";
+import { ArticleInterface } from "src/app/core/models";
 
 @Component({
   selector: "app-news-item",
@@ -14,7 +15,7 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsItemComponent implements OnInit {
-  @Input() article: any;
+  @Input() article: ArticleInterface;
 
   constructor(private dataService: DataService) {}
 
@@ -25,8 +26,12 @@ export class NewsItemComponent implements OnInit {
     this.dataService.changeAppTitle("Edit");
   }
 
-  public onWatchArticle() {
+  public onReadArticle() {
     this.dataService.setCurrentArticle(this.article);
     this.dataService.changeAppTitle("Read chosen article");
+  }
+
+  public onDeleteArticle(id: string) {
+    this.dataService.deleteMyArticle(id);
   }
 }

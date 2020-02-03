@@ -1,9 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy
+} from "@angular/core";
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
 
-import { Observable } from "rxjs";
+import { Subscription } from "rxjs";
 
 import { DataService } from "src/app/shared/services/data.service";
+import { ArticleInterface } from "src/app/core/models";
 
 @Component({
   selector: "app-create-edit-form",
@@ -11,30 +18,53 @@ import { DataService } from "src/app/shared/services/data.service";
   styleUrls: ["./create-edit-form.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateEditFormComponent implements OnInit {
-  public currentArticle$: Observable<any>;
+export class CreateEditFormComponent implements OnInit, OnDestroy {
+  public currentArticleSubscription: Subscription;
+  public article: ArticleInterface;
 
-  public articleForm = this.fb.group({
-    heading: ["", Validators.required],
-    shortDescription: [""],
-    content: ["", Validators.required],
-    photo: this.fb.group({
-      radioType: ["url"],
-      inputUrl: [""],
-      inputImg: [""]
-    }),
-    date: [""],
-    author: [""],
-    sourceUrl: [""]
-  });
+  public articleForm: FormGroup;
 
   public radioButtonValue: boolean = false;
   public image: string;
 
-  constructor(private fb: FormBuilder, private dataService: DataService) {}
+  constructor(
+    private fb: FormBuilder,
+    private dataService: DataService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.currentArticle$ = this.dataService.currentArticle$;
+    this.currentArticleSubscription = this.dataService.currentArticle$.subscribe(
+      (article: ArticleInterface) => (this.article = article)
+    );
+
+    const {
+      author,
+      title,
+      description,
+      url,
+      urlToImage,
+      publishedAt,
+      content
+    } = this.article;
+
+    this.articleForm = this.fb.group({
+      heading: [title, Validators.required],
+      shortDescription: [description],
+      content: [content, Validators.required],
+      photo: this.fb.group({
+        radioType: ["url"],
+        inputUrl: [urlToImage],
+        inputImg: [""]
+      }),
+      date: [publishedAt],
+      author: [author],
+      sourceUrl: [url]
+    });
+  }
+
+  public ngOnDestroy() {
+    this.currentArticleSubscription.unsubscribe();
   }
 
   public onRadioClicked({ target: { value } }): void {
@@ -62,13 +92,8 @@ export class CreateEditFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log("SAVE FORM", this.articleForm.value);
-    alert("SAVE FORM");
-  }
-
-  public onCancel(): void {
-    console.log("ON CANCEL FORM");
-    alert("ON CANCEL FORM");
+    this.dataService.processArticle(this.articleForm.value);
+    this.router.navigate(["../"]);
   }
 
   private get photo(): any {

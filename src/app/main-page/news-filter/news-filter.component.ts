@@ -7,9 +7,9 @@ import {
 } from "@angular/core";
 
 import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
 
 import { DataService } from "src/app/shared/services/data.service";
+import { SourceInterface, ArticleInterface } from "src/app/core/models";
 
 @Component({
   selector: "app-news-filter",
@@ -18,12 +18,15 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsFilterComponent implements OnInit {
-  @Output() currentSourceChange: EventEmitter<any> = new EventEmitter();
+  @Output() currentSourceChange: EventEmitter<{
+    name: string;
+    id: string;
+  }> = new EventEmitter();
   @Output() currentNewsFilterChange: EventEmitter<string> = new EventEmitter();
   @Output() currentCheckboxState: EventEmitter<boolean> = new EventEmitter();
 
   public currentSource$: Observable<string>;
-  public sources$: Observable<any>;
+  public sources$: Observable<SourceInterface[]>;
   public currentNewsFilter$: Observable<string>;
   public isOnlyMyArticles$: Observable<boolean>;
 
@@ -62,10 +65,25 @@ export class NewsFilterComponent implements OnInit {
     this.dataService.changeCurrentArticlesFilter("");
     this.dataService.changeIsOnlyMyArticles(checked);
     this.dataService.changeAppTitle("My News");
+    this.dataService.getArticlesBySourceId("my-news");
   }
 
   public onAddArticle(): void {
-    this.dataService.setCurrentArticle({});
+    const emptyArticle: ArticleInterface = {
+      source: {
+        id: "my-news",
+        name: "My News"
+      },
+      author: "",
+      title: "",
+      description: "",
+      url: "",
+      urlToImage: "",
+      publishedAt: new Date().toISOString(),
+      content: "",
+      myNews: true
+    };
+    this.dataService.setCurrentArticle(emptyArticle);
     this.dataService.changeAppTitle("Create");
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { DataService } from "../shared/services/data.service";
+import { ArticleInterface } from "../core/models/index";
 
 @Component({
   selector: "app-main-page",
@@ -12,8 +13,7 @@ import { DataService } from "../shared/services/data.service";
 export class MainPageComponent implements OnInit {
   public currentSourceId: string = "";
   public checkboxState: boolean = false;
-  public articles$: Observable<any>;
-  public allFoundArticles: any[];
+  public articles$: Observable<ArticleInterface[]>;
   public counter: number = 0;
   public currentNewsFilter$: Observable<string>;
 
@@ -30,20 +30,7 @@ export class MainPageComponent implements OnInit {
   }
 
   public onChangeIsOnlyMyArticles(newValue: boolean): void {
-    console.log(newValue);
-    // if (newValue === true) {
-    //   this.allFoundArticles = ARTICLES.reduce((acc, sourceArticles: any) => {
-    //     if (sourceArticles.source === "my-news") {
-    //       return [...acc, ...sourceArticles.articles];
-    //     }
-    //     return acc;
-    //   }, []);
-
-    //   this.articles = this.allFoundArticles.slice(0, 5);
-    //   this.counter = 5;
-    // } else {
-    //   this.articles = [];
-    // }
+    this.dataService.getArticlesBySourceId("my-news");
   }
 
   public onLoadMoreButtonClicked(): void {

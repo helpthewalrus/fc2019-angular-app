@@ -3,7 +3,7 @@
   class="article-form"
   [formGroup]="articleForm"
   (ngSubmit)="onSubmit()"
-  *ngIf="currentArticle$ | async as article"
+  *ngIf="article"
 >
   <label class="article-form__label heading">
     <span class="article-form__span heading">
@@ -14,7 +14,6 @@
       type="text"
       formControlName="heading"
       required
-      value="{{ article.title ? article.title : '' }}"
     />
   </label>
 
@@ -26,7 +25,6 @@
       class="article-form__input shortDescription"
       type="text"
       formControlName="shortDescription"
-      value="{{ article.description ? article.description : '' }}"
     />
   </label>
 
@@ -39,7 +37,6 @@
       type="textarea"
       formControlName="content"
       required
-      value="{{ article.description ? article.description : '' }}"
     />
   </label>
 
@@ -100,7 +97,6 @@
       class="article-form__input date"
       type="text"
       formControlName="date"
-      value="{{ article.publishedAt ? article.publishedAt : '' }}"
     />
   </label>
 
@@ -112,7 +108,6 @@
       class="article-form__input author"
       type="text"
       formControlName="author"
-      value="{{ article.author ? article.author : '' }}"
     />
   </label>
 
@@ -124,7 +119,6 @@
       class="article-form__input sourceUrl"
       type="text"
       formControlName="sourceUrl"
-      value="{{ article.url ? article.url : '' }}"
     />
   </label>
 
@@ -136,7 +130,7 @@
     Submit
   </button>
 
-  <button class="article-form__submit" type="button" (click)="onCancel()">
+  <button class="article-form__submit" type="button" routerLink="/">
     Cancel
   </button>
 </form>

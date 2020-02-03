@@ -6,7 +6,7 @@
 </div>
 <button
   class="load-news"
-  *ngIf="articles && articles.length"
+  *ngIf="articles && articles.length && articles[0].source.id !== 'my-news'"
   (click)="onLoadMoreClicked()"
 >
   Load more

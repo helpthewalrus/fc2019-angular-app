@@ -18,7 +18,7 @@
         routerLink="news-page/{{ article.publishedAt }}"
         href="{{ article.url }}"
         class="news-item__info-container info__link"
-        (click)="onWatchArticle()"
+        (click)="onReadArticle()"
       >
         Read more...
       </a>
@@ -35,6 +35,8 @@
       (click)="onEditArticle()"
       >Edit
     </a>
-    <a class="news-item__buttons button">Delete</a>
+    <a class="news-item__buttons button" (click)="onDeleteArticle(article._id)"
+      >Delete</a
+    >
   </div>
 </div>
