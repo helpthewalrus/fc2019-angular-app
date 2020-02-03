@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Observable } from "rxjs";
 
 import { DataService } from "src/app/shared/services/data.service";
+import { ArticleInterface } from "src/app/core/models";
 
 @Component({
   selector: "app-news-card",
@@ -11,7 +12,7 @@ import { DataService } from "src/app/shared/services/data.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsCardComponent implements OnInit {
-  public currentArticle$: Observable<any>;
+  public currentArticle$: Observable<ArticleInterface>;
 
   constructor(private dataService: DataService) {}
 
@@ -19,7 +20,7 @@ export class NewsCardComponent implements OnInit {
     this.currentArticle$ = this.dataService.currentArticle$;
   }
 
-  public onEditArticle(article: any) {
+  public onEditArticle(article: ArticleInterface) {
     this.dataService.changeAppTitle("Edit");
     this.dataService.setCurrentArticle(article);
   }

@@ -6,6 +6,8 @@ import {
   EventEmitter
 } from "@angular/core";
 
+import { ArticleInterface } from "src/app/core/models";
+
 @Component({
   selector: "app-news-list",
   templateUrl: "./news-list.component.html",
@@ -13,7 +15,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsListComponent {
-  @Input() articles: any[];
+  @Input() articles: ArticleInterface[];
 
   @Output() loadMoreClicked: EventEmitter<{}> = new EventEmitter();
 
