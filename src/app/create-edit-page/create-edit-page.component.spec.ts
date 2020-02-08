@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateEditPageComponent } from './create-edit-page.component';
+import { CreateEditPageComponent } from "./create-edit-page.component";
 
-describe('CreateEditPageComponent', () => {
+describe("CreateEditPageComponent", () => {
   let component: CreateEditPageComponent;
   let fixture: ComponentFixture<CreateEditPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateEditPageComponent ]
-    })
-    .compileComponents();
+      declarations: [CreateEditPageComponent],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('CreateEditPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
