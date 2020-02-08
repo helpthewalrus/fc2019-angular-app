@@ -52,7 +52,7 @@ const filteredArticles: ArticleInterface[] = [
   }
 ];
 
-fdescribe("FilterArticlesPipe", () => {
+describe("FilterArticlesPipe", () => {
   let pipe: FilterArticlesPipe;
 
   beforeAll(() => {
