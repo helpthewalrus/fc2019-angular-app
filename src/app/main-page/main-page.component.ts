@@ -29,7 +29,7 @@ export class MainPageComponent implements OnInit {
     this.dataService.getArticlesBySourceId(id);
   }
 
-  public onChangeIsOnlyMyArticles(newValue: boolean): void {
+  public onChangeIsOnlyMyArticles(): void {
     this.dataService.getArticlesBySourceId("my-news");
   }
 
