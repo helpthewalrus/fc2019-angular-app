@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { NewsPageComponent } from "./news-page.component";
 
-fdescribe("NewsPageComponent", () => {
+describe("NewsPageComponent", () => {
   let component: NewsPageComponent;
   let fixture: ComponentFixture<NewsPageComponent>;
 
