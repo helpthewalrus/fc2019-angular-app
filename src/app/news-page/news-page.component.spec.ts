@@ -1,16 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewsPageComponent } from './news-page.component';
+import { NewsPageComponent } from "./news-page.component";
 
-describe('NewsPageComponent', () => {
+fdescribe("NewsPageComponent", () => {
   let component: NewsPageComponent;
   let fixture: ComponentFixture<NewsPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewsPageComponent ]
-    })
-    .compileComponents();
+      declarations: [NewsPageComponent],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +20,7 @@ describe('NewsPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
