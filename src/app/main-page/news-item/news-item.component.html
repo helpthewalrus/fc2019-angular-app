@@ -1,7 +1,8 @@
 <div class="news-item">
   <div class="news-item__info-container">
     <img
-      data-src="{{ article.urlToImage }}"
+      *ngIf="article.urlToImage !== 'null'"
+      [src]="article.urlToImage"
       alt="news item image"
       class="news-item__info-container image"
     />
