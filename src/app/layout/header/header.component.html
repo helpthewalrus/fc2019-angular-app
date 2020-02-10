@@ -1,4 +1,12 @@
-<nav class="nav-bar">
-  <a routerLink="/" class="nav-bar__link">Main</a>
-  <a routerLink="/contact" class="nav-bar__link">Contact</a>
-</nav>
+<div class="header-container">
+  <nav class="header-container nav-bar">
+    <a
+      routerLink="/"
+      class="header-container nav-bar__link"
+      (click)="onChangeTitle('News App')"
+    >
+      Main
+    </a>
+  </nav>
+  <h1 class="header-container app-title">{{ currentAppTitle$ | async }}</h1>
+</div>

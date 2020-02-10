@@ -8,14 +8,21 @@ const routes: Routes = [
       import("./not-found/not-found.module").then(m => m.NotFoundModule)
   },
   {
-    path: "contact",
+    path: "news-page/:id",
     loadChildren: () =>
-      import("./contact/contact.module").then(m => m.ContactModule)
+      import("./news-page/news-page.module").then(m => m.NewsPageModule)
+  },
+  {
+    path: "edit",
+    loadChildren: () =>
+      import("./create-edit-page/create-edit-page.module").then(
+        m => m.CreateEditPageModule
+      )
   },
   {
     path: "",
     loadChildren: () =>
-      import("./main-view/main-view.module").then(m => m.MainViewModule),
+      import("./main-page/main-page.module").then(m => m.MainPageModule),
     pathMatch: "full"
   },
   {

@@ -1,0 +1,43 @@
+<div class="news-item">
+  <div class="news-item__info-container">
+    <img
+      *ngIf="article.urlToImage !== 'null'"
+      [src]="article.urlToImage"
+      alt="news item image"
+      class="news-item__info-container image"
+    />
+
+    <div class="news-item__info-container info">
+      <h3 class="news-item__info-container info__title">{{ article.title }}</h3>
+      <p class="news-item__info-container info__date">
+        Date: {{ article.publishedAt | date: "short" }}
+      </p>
+      <p class="news-item__info-container info__description">
+        {{ article.description }}
+      </p>
+      <a
+        routerLink="news-page/{{ article.publishedAt }}"
+        href="{{ article.url }}"
+        class="news-item__info-container info__link"
+        (click)="onReadArticle()"
+      >
+        Read more...
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="news-item__buttons"
+    *ngIf="article.myNews && article.myNews === true"
+  >
+    <a
+      routerLink="/edit"
+      class="news-item__buttons button"
+      (click)="onEditArticle()"
+      >Edit
+    </a>
+    <a class="news-item__buttons button" (click)="onDeleteArticle(article._id)"
+      >Delete</a
+    >
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<form
+  novalidate
+  class="article-form"
+  [formGroup]="articleForm"
+  (ngSubmit)="onSubmit()"
+  *ngIf="article"
+>
+  <label class="article-form__label heading">
+    <span class="article-form__span heading">
+      Heading*:
+    </span>
+    <input
+      class="article-form__input heading"
+      type="text"
+      formControlName="heading"
+      required
+    />
+  </label>
+
+  <label class="article-form__label shortDescription">
+    <span class="article-form__span shortDescription">
+      Short description:
+    </span>
+    <input
+      class="article-form__input shortDescription"
+      type="text"
+      formControlName="shortDescription"
+    />
+  </label>
+
+  <label class="article-form__label content">
+    <span class="article-form__span content">
+      Content*:
+    </span>
+    <input
+      class="article-form__input content"
+      type="textarea"
+      formControlName="content"
+      required
+    />
+  </label>
+
+  <div formGroupName="photo" class="article-form__label image">
+    <label for="inputImg" class="article-form__span image">
+      <span>
+        Image:
+      </span>
+    </label>
+
+    <div>
+      <label for="radioUrl" class="radio-label">Url:</label>
+      <input
+        class="radio-label"
+        id="radioUrl"
+        type="radio"
+        value="url"
+        [checked]="true"
+        formControlName="radioType"
+        (click)="onRadioClicked($event)"
+      />
+      <label for="radioImage" class="radio-label">Image:</label>
+      <input
+        class="radio-label"
+        id="radioImage"
+        type="radio"
+        value="image"
+        formControlName="radioType"
+        (click)="onRadioClicked($event)"
+      />
+      <br />
+
+      <input
+        id="inputImg"
+        *ngIf="radioButtonValue"
+        class="article-form__input image"
+        type="file"
+        (change)="onFileSelect($event)"
+      />
+      <input
+        id="inputImg"
+        *ngIf="!radioButtonValue"
+        class="article-form__input image"
+        type="text"
+        formControlName="inputUrl"
+        (change)="onUrlSelect()"
+        value="{{ article.urlToImage ? article.urlToImage : '' }}"
+      />
+      <img [src]="image" *ngIf="image && radioButtonValue" class="preview" />
+    </div>
+  </div>
+
+  <label class="article-form__label date">
+    <span class="article-form__span date">
+      Date:
+    </span>
+    <input
+      class="article-form__input date"
+      type="text"
+      formControlName="date"
+    />
+  </label>
+
+  <label class="article-form__label author">
+    <span class="article-form__span author">
+      Author:
+    </span>
+    <input
+      class="article-form__input author"
+      type="text"
+      formControlName="author"
+    />
+  </label>
+
+  <label class="article-form__label sourceUrl">
+    <span class="article-form__span sourceUrl">
+      Source url:
+    </span>
+    <input
+      class="article-form__input sourceUrl"
+      type="text"
+      formControlName="sourceUrl"
+    />
+  </label>
+
+  <button
+    class="article-form__submit"
+    type="submit"
+    [disabled]="!articleForm.valid"
+  >
+    Submit
+  </button>
+
+  <button class="article-form__submit" type="button" routerLink="/">
+    Cancel
+  </button>
+</form>

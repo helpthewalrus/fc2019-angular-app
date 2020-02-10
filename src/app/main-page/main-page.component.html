@@ -1,0 +1,8 @@
+<app-news-filter
+  (currentSourceChange)="onChangeCurrentSource($event)"
+  (currentCheckboxState)="onChangeIsOnlyMyArticles()"
+></app-news-filter>
+<app-news-list
+  [articles]="articles$ | async | filter: (currentNewsFilter$ | async)"
+  (loadMoreClicked)="onLoadMoreButtonClicked()"
+></app-news-list>
