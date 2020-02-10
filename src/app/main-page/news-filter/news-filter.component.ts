@@ -69,7 +69,12 @@ export class NewsFilterComponent implements OnInit {
   }
 
   public onAddArticle(): void {
-    const emptyArticle: ArticleInterface = {
+    this.dataService.setCurrentArticle(this.createEmptyArticle());
+    this.dataService.changeAppTitle("Create");
+  }
+
+  public createEmptyArticle(): ArticleInterface {
+    return {
       source: {
         id: "my-news",
         name: "My News"
@@ -83,7 +88,5 @@ export class NewsFilterComponent implements OnInit {
       content: "",
       myNews: true
     };
-    this.dataService.setCurrentArticle(emptyArticle);
-    this.dataService.changeAppTitle("Create");
   }
 }
